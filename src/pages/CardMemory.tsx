@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Progress from "../components/Progress";
 import { useAppDispatch, useAppSelector } from "../store";
 import { setGameStatus } from "../stores/gameSlice";
+import CardBoard from "../components/CardBoard";
 
 export default function CardMemory(){
-    const {status} = useAppSelector((state) => state.game);
+    const {status, cards} = useAppSelector((state) => state.game);
     const dispatch = useAppDispatch();
 
 
@@ -65,7 +66,7 @@ export default function CardMemory(){
                 {
                     status === "ingame" || status === "finish" ? 
                         <>
-                            <div className="list-card"></div>
+                            <CardBoard cards={cards}/>
                             {
                                 status === "ingame" && (<Progress totalTime={totalTime} remainingTime={remainingTime}/>) 
                             }

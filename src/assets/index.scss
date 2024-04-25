@@ -2,6 +2,7 @@ body{
     --white: #dddddd;
     --white-lite: 221, 221, 221, 0.4;
     --background: #1b1c1d;
+    --primary: #0098a0;
 }
 // App style
 body, html, #root{
@@ -51,3 +52,39 @@ button:hover{
         }
     }
 }
+// Component card board
+#card-board{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    max-width: 600px;
+}
+// Component card
+.cards{
+    list-style-type: none;
+    flex: 1 0 20%;
+    & > img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Component progress
+.progress-bar {
+    background-color: var(--white);
+    width: 300px;
+    border-radius: 2px;
+    height: 16px;
+}
+.progress-inner {
+    background: var(--primary);
+    border-radius: 2px 0 0 2px;
+    height: 100%;
+}
+
+::-webkit-progress-bar {
+    background-color: orange;
+}
+  
