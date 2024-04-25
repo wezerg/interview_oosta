@@ -12,25 +12,31 @@ import cat4141 from '../assets/img/cat4141.jpg';
 
 // Type of my datas
 interface GameState {
-    status: "initial" | "ingame" | "finish",
-    sampleCards: ICard[],
-    cards: ICard[]
+    status: "initial" | "ingame" | "finish";
+    sampleCards: ICard[];
+    cards: ICard[];
+    cardsFound: ICard[];
+    currentCards: ICard[];
+    labelResult: string;
 }
 
 // Initial state of the game
 const initialState: GameState = {
     status: "initial",
     sampleCards: [
-        {img: cat22, index: 1},
-        {img: cat113, index: 2},
-        {img: cat436, index: 3},
-        {img: cat1616, index: 4},
-        {img: cat2782, index: 5},
-        {img: cat3100, index: 6},
-        {img: cat3991, index: 7},
-        {img: cat4141, index: 8}
+        {img: cat22, indexPair: 1},
+        {img: cat113, indexPair: 2},
+        {img: cat436, indexPair: 3},
+        {img: cat1616, indexPair: 4},
+        {img: cat2782, indexPair: 5},
+        {img: cat3100, indexPair: 6},
+        {img: cat3991, indexPair: 7},
+        {img: cat4141, indexPair: 8}
     ],
-    cards: []
+    cards: [],
+    cardsFound: [],
+    currentCards: [],
+    labelResult: ""
 }
 
 export const gameSlice = createSlice({
@@ -40,17 +46,28 @@ export const gameSlice = createSlice({
         // Set game status reducer
         setGameStatus: (state, action: PayloadAction<"initial" | "ingame" | "finish">) => {
             if (action.payload === "ingame") {
-                // Fulfill the deck
-                state.cards = shuffle([...state.sampleCards, ...state.sampleCards]);
-            }
-            else{
-                 
+                // Fulfill the deck and reset game
+                state.cards = shuffle([...state.sampleCards, ...state.sampleCards]).map((card, index) => {
+                    return {...card, uniqueIndex: index}
+                });
+                state.cardsFound = [];
+                state.currentCards = [];
+                state.labelResult = "";
             }
             state.status = action.payload;
+        },
+        setCurrentCards: (state, action: PayloadAction<ICard[]>) => {
+            state.currentCards = action.payload;
+        },
+        addToCardsFound: (state, action: PayloadAction<ICard>) => {
+            state.cardsFound.push(action.payload);
+        },
+        setLabelResult: (state, action: PayloadAction<string>) => {
+            state.labelResult = action.payload;
         }
     }
 })
 
-export const { setGameStatus } = gameSlice.actions;
+export const { setGameStatus, setCurrentCards, addToCardsFound, setLabelResult } = gameSlice.actions;
 
 export default gameSlice.reducer;

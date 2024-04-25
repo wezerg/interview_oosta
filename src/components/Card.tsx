@@ -1,12 +1,18 @@
 export interface ICard{
     img: string;
-    index: number;
+    indexPair: number;
+    uniqueIndex?: number;
+}
+interface ICardGame extends ICard{
+    hidden: boolean;
+    selectCard: () => void;
 }
 
-export default function Card({img, index}: ICard){
+
+export default function Card({img, selectCard, hidden}: ICardGame){
 
     return (
-        <li className="cards">
+        <li className={`cards${hidden ? " hidden" : ""}`} onClick={() => selectCard()}>
             <img src={img} alt=""/>
         </li>
     )

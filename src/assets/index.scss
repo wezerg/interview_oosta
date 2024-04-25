@@ -3,6 +3,8 @@ body{
     --white-lite: 221, 221, 221, 0.4;
     --background: #1b1c1d;
     --primary: #0098a0;
+    --error: #ff5d60;
+    --success: #00c29e;
 }
 // App style
 body, html, #root{
@@ -50,6 +52,11 @@ button:hover{
         #launch-game{
             font-size: 18px;
         }
+        & > .label-result{
+            color: var(--white);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
     }
 }
 // Component card board
@@ -65,9 +72,18 @@ button:hover{
 .cards{
     list-style-type: none;
     flex: 1 0 20%;
+    cursor: pointer;
+    transition: all ease-in-out 0.15s;
+    filter: brightness(1);
+    border-radius: 2px;
     & > img{
         width: 100%;
         height: 100%;
+        border-radius: 2px;
+        pointer-events: none;
+    }
+    &.hidden{
+        filter: brightness(0);
     }
 }
 
@@ -83,8 +99,3 @@ button:hover{
     border-radius: 2px 0 0 2px;
     height: 100%;
 }
-
-::-webkit-progress-bar {
-    background-color: orange;
-}
-  
