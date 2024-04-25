@@ -40,7 +40,16 @@ export default function CardMemory(){
             dispatch(setLabelResult('Dommage, vous avez perdu.'));
             clearInterval(intervalTime);
         }
-    }, [remainingTime]);
+    }, [remainingTime, intervalTime, status, dispatch]);
+
+    // Use effect to quit the game while win
+    useEffect(() => {
+        if (cardsFound.length === sampleCards.length) {
+            dispatch(setGameStatus("finish"));
+            dispatch(setLabelResult('Félicitation, vous avez gagné !'));
+            clearInterval(intervalTime);
+        }
+    }, [cardsFound.length, dispatch, sampleCards.length, intervalTime])
 
     // Logic for click cards
     function selectCard(card: ICard){
@@ -70,15 +79,6 @@ export default function CardMemory(){
             }
         }
     }
-
-    // Use effect to quit the game while win
-    useEffect(() => {
-        if (cardsFound.length === sampleCards.length) {
-            dispatch(setGameStatus("finish"));
-            dispatch(setLabelResult('Félicitation, vous avez gagné !'));
-            clearInterval(intervalTime);
-        }
-    }, [cardsFound.length, dispatch, sampleCards.length])
 
     return (
         <main id="card-memory">
