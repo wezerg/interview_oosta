@@ -5,6 +5,7 @@ body{
     --primary: #0098a0;
     --error: #ff5d60;
     --success: #00c29e;
+    --grey: #4d4d4e;
 }
 // App style
 body, html, #root{
@@ -21,7 +22,7 @@ button{
     transition: all ease-in-out 0.15s;
     border: 1px solid transparent;
     color: var(--white);
-    background: #4d4d4e;
+    background: var(--grey);
     padding: 4px 8px;
     border-radius: 2px;
     cursor: pointer;
@@ -30,11 +31,37 @@ button:hover{
     border: 1px solid var(--white);
 }
 
-// Card memory
-#card-memory{
+// Generic class
+.d-flex{display: flex;}
+.d-flex-col{
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+.flex-grow{flex-grow: 1;}
+.flex-wrap{flex-wrap: wrap;}
+
+.align-center{align-items: center;}
+.justify-center{justify-content: center;}
+
+.c-white{color: var(--white);}
+.c-white-lite{color: rgba(var(--white-lite));}
+.c-background{color: var(--background);}
+.c-primary{color: var(--primary);}
+.c-error{color: var(--error);}
+.c-success{color: var(--success);}
+.c-grey{color: var(--grey);}
+
+.bg-white{background: var(--white);}
+.bg-white-lite{background: rgba(var(--white-lite));}
+.bg-background{background: var(--background);}
+.bg-primary{background: var(--primary);}
+.bg-error{background: var(--error);}
+.bg-success{background: var(--success);}
+.bg-grey{background: var(--grey);}
+
+
+// Card memory
+#card-memory{
     height: 100%;
     & > h1{
         color: var(--white);
@@ -44,16 +71,10 @@ button:hover{
         color: var(--white);
     }
     & #game-board{
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        align-items: center;
-        justify-content: center;
         #launch-game{
             font-size: 18px;
         }
         & > .label-result{
-            color: var(--white);
             font-size: 18px;
             margin-bottom: 8px;
         }
@@ -61,12 +82,11 @@ button:hover{
 }
 // Component card board
 #card-board{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
     padding: 0;
     max-width: 600px;
+    border-radius: 5px;
+    padding: 16px;
 }
 // Component card
 .cards{
@@ -89,13 +109,11 @@ button:hover{
 
 // Component progress
 .progress-bar {
-    background-color: var(--white);
     width: 300px;
     border-radius: 2px;
     height: 16px;
 }
 .progress-inner {
-    background: var(--primary);
     border-radius: 2px 0 0 2px;
     height: 100%;
 }

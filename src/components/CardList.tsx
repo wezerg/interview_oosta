@@ -9,7 +9,7 @@ interface ICardList{
 
 export default function CardList({cards, cardsFound, currentCards, selectCard}: ICardList){
     return (
-        <ul id="card-board">
+        <ul id="card-board" className="d-flex flex-wrap justify-center bg-grey">
             {
                 cards.map((card, index) => {
                     return (

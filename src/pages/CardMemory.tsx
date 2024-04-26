@@ -83,13 +83,13 @@ export default function CardMemory(){
     }
 
     return (
-        <main id="card-memory">
-            <h1>Bienvenue dans le jeu "Cat memory"</h1>
-            <p>Dans ce jeu, vous devez retrouver toutes les paires identiques en 60 secondes</p>
+        <main id="card-memory" className="d-flex-col align-center">
+            <h1>Bienvenue dans le jeu <span className="c-primary">"Cat memory"</span></h1>
+            <p>Dans ce jeu, vous devez retrouver toutes les paires de chat identiques en 60 secondes</p>
             <p>Pour commencer le jeu, cliquer sur le bouton démarrer</p>
-            <div id="game-board">
+            <div id="game-board" className="d-flex-col align-center justify-center flex-grow">
                 {
-                    !!labelResult && (<span className="label-result">{labelResult}</span>)
+                    !!labelResult && (<span className="label-result c-white">{labelResult}</span>)
                 }
                 {
                     status === "initial" || status === "finish" ? 
