@@ -109,11 +109,13 @@ button:hover{
 
 // Component progress
 .progress-bar {
+    padding: 4px;
     width: 300px;
     border-radius: 2px;
     height: 16px;
 }
 .progress-inner {
+    transition: all linear 1s;
     border-radius: 2px 0 0 2px;
     height: 100%;
 }

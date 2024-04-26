@@ -104,7 +104,7 @@ export default function CardMemory(){
                 {
                     status === "ingame" || status === "finish" ? 
                         <>
-                            <CardList cards={cards} cardsFound={cardsFound} currentCards={currentCards} selectCard={selectCard}/>
+                            <CardList result={labelResult} cards={cards} cardsFound={cardsFound} currentCards={currentCards} selectCard={selectCard}/>
                             {
                                 status === "ingame" && (<Progress totalTime={totalTime} remainingTime={remainingTime}/>) 
                             }

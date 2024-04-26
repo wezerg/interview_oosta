@@ -5,11 +5,12 @@ interface ICardList{
     currentCards: ICard[]; 
     cardsFound: ICard[];
     selectCard: (card: ICard) => void;
+    result?: string;
 }
 
-export default function CardList({cards, cardsFound, currentCards, selectCard}: ICardList){
+export default function CardList({cards, cardsFound, currentCards, selectCard, result}: ICardList){
     return (
-        <ul id="card-board" className="d-flex flex-wrap justify-center bg-grey">
+        <ul id="card-board" className={`d-flex flex-wrap justify-center ${result?.includes('Dommage') ? "bg-error" : result?.includes('Félicitation') ? "bg-success" : "bg-grey"}`}>
             {
                 cards.map((card, index) => {
                     return (
