@@ -3,7 +3,7 @@ export interface ICard{
     indexPair: number;
     uniqueIndex?: number;
 }
-interface ICardGame extends ICard{
+export interface ICardGame extends ICard{
     hidden: boolean;
     selectCard: () => void;
 }

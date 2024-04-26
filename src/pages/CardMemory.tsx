@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Progress from "../components/Progress";
 import { useAppDispatch, useAppSelector } from "../store";
 import { addToCardsFound, setCurrentCards, setGameStatus, setLabelResult } from "../stores/gameSlice";
-import Card, { ICard } from "../components/Card";
+import { ICard } from "../components/Card";
+import CardList from "../components/CardList";
 
 export default function CardMemory(){
     const {status, cards, currentCards, cardsFound, sampleCards, labelResult} = useAppSelector((state) => state.game);
@@ -102,21 +103,7 @@ export default function CardMemory(){
                 {
                     status === "ingame" || status === "finish" ? 
                         <>
-                            <ul id="card-board">
-                                {
-                                    cards.map((card, index) => {
-                                        return (
-                                            <Card 
-                                                hidden={!currentCards.find(c => c.uniqueIndex === card.uniqueIndex) && !cardsFound.find(c => c.indexPair === card.indexPair)}
-                                                key={index} 
-                                                indexPair={card.indexPair} 
-                                                img={card.img} 
-                                                selectCard={() => selectCard(card)}
-                                            /> 
-                                        )
-                                    })
-                                }
-                            </ul>
+                            <CardList cards={cards} cardsFound={cardsFound} currentCards={currentCards} selectCard={selectCard}/>
                             {
                                 status === "ingame" && (<Progress totalTime={totalTime} remainingTime={remainingTime}/>) 
                             }
