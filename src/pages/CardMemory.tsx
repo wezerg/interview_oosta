@@ -54,29 +54,30 @@ export default function CardMemory(){
 
     // Logic for click cards
     function selectCard(card: ICard){
-        // Block array at 2 elements
-        if (currentCards.length < 2) {
-            if (currentCards.length) {// If one card is already pick
-                // Early return if click on same card
-                if (currentCards.find(c => c.uniqueIndex === card.uniqueIndex)) {
-                    return;
-                }
-                if (currentCards.find(c => c.indexPair === card.indexPair)) {
-                    dispatch(addToCardsFound(card));
-                    dispatch(setCurrentCards([]));
-                }
-                else{
-                    dispatch(setCurrentCards([...currentCards, card])); 
-                    setTimeout(() => {
-                        dispatch(setCurrentCards([]));
-                    }, 700);
-                }
+        // Early return of card selected are over 2 or if the game are not launch
+        if (status !== "ingame" || currentCards.length >= 2) {
+            return;
+        }
+        if (currentCards.length) {// If one card is already pick
+            // Early return if click on same card
+            if (currentCards.find(c => c.uniqueIndex === card.uniqueIndex)) {
+                return;
+            }
+            if (currentCards.find(c => c.indexPair === card.indexPair)) {
+                dispatch(addToCardsFound(card));
+                dispatch(setCurrentCards([]));
             }
             else{
-                // Pick one card if not pick yet
-                if (!cardsFound.find(c => c.indexPair === card.indexPair)) {
-                    dispatch(setCurrentCards([...currentCards, card]));
-                }
+                dispatch(setCurrentCards([...currentCards, card])); 
+                setTimeout(() => {
+                    dispatch(setCurrentCards([]));
+                }, 700);
+            }
+        }
+        else{
+            // Pick one card if not pick yet
+            if (!cardsFound.find(c => c.indexPair === card.indexPair)) {
+                dispatch(setCurrentCards([...currentCards, card]));
             }
         }
     }
